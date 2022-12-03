@@ -24,22 +24,38 @@ namespace EgyptianCalculator
             return numbers;
         }
 
-        private static void MultiplicationByDoubling()
+        private static void MultiplicationByDoubling(int multiplicand, int multiplier)
         {
-            Console.WriteLine("\nMultiplicationByDoubling");
-            
-            int[] numbers = getTwoNumbers();
-
-            // Numbers to multiply.
-            int multiplicand = numbers[0];
-            int multiplier = numbers[1];
+            Console.WriteLine("\n---| MultiplicationByDoubling |---");
 
             Console.WriteLine("You've Entered: {0} X {1} to multiply", multiplicand, multiplier);
         }
 
-        private static void MultiplicationByHalving()
+        private static int MultiplicationByHalving(int multiplicand, int multiplier)
         {
-            Console.WriteLine("\nMultiplicationByHalving");
+            int product;
+
+            if(multiplicand == 1)
+            {
+                product = multiplier;
+            }
+            else if (multiplicand % 2 != 0)
+            {
+                product = multiplier + MultiplicationByHalving(multiplicand / 2, 2 * multiplier);
+            }
+            else //if(multiplicand % 2 == 0)
+            {
+                product = MultiplicationByHalving(multiplicand / 2, 2 * multiplier);
+            }
+
+            int product_temp = 0;
+            if(product >= product_temp)
+            {
+                product_temp = product;
+            }
+            Console.WriteLine("\nSteps: {0} -> {1}", multiplicand, multiplier);
+            Console.WriteLine("\nProduct: {0}", product_temp);
+            return product;
         }
 
         // - Driver Function
@@ -49,13 +65,19 @@ namespace EgyptianCalculator
 
             int multiplicationType = Convert.ToInt32(Console.ReadLine());
 
+            int[] numbers = getTwoNumbers();
+
+            // Numbers to multiply.
+            int multiplicand = numbers[0];
+            int multiplier = numbers[1];
+
             if (multiplicationType == 1)
             {
-                MultiplicationByDoubling();
+                MultiplicationByDoubling(multiplicand, multiplier);
             }
             else if(multiplicationType == 2)
             {
-                MultiplicationByHalving();
+                MultiplicationByHalving(multiplicand, multiplier);
             }
             else
             {
