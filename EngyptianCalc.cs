@@ -9,6 +9,15 @@ namespace EgyptianCalculator
 {
     class EngyptianCalc
     {
+        public class pair
+        {
+            public int first, second;
+            public pair(int first, int second)
+            {
+                this.first = first;
+                this.second = second;
+            }
+        }
         // - Public function to get first & second number
         public static int[] getTwoNumbers()
         {
@@ -28,7 +37,6 @@ namespace EgyptianCalculator
         private static void MultiplicationByDoubling(int multiplicand, int multiplier)
         {
             Console.WriteLine("\n---| MultiplicationByDoubling |---");
-            Console.WriteLine("\nYou've Entered: {0} X {1} to multiply", multiplicand, multiplier);
 
             int value = 1;
             var firstColumn = new ArrayList();
@@ -59,8 +67,40 @@ namespace EgyptianCalculator
                 Console.WriteLine(secondColumn[i] + ", ");
             }
 
-            //Find elements that add up to a Multiplicand (firstClumn)
-
+            //Find elements that add up to a Multiplicand (firstColumn) and store in a hash table
+            Dictionary<int, pair> map = new Dictionary<int, pair>();
+            for(int i=0; i<firstColumn.Count; i++)
+            {
+                for(int j=i+1; j<firstColumn.Count; j++)
+                {
+                    if (map.ContainsKey((int)firstColumn[i] + (int)firstColumn[j]))
+                    {
+                        map[(int)firstColumn[i] + (int)firstColumn[j]] = new pair(i, j);
+                    }
+                    else
+                    {
+                        map.Add((int)firstColumn[i] + (int)firstColumn[j], new pair(i, j));
+                    }
+                }
+            }
+            //Traverse through all the pairs and search for multiplicand
+            for(int i=0; i<firstColumn.Count; i++)
+            {
+                for (int j=i+1; j<firstColumn.Count; j++)
+                {
+                    int sum = (int)firstColumn[i] + (int)firstColumn[j];
+                    //if multiplicand is present in the hash table
+                    if(map.ContainsKey(multiplicand - sum))
+                    {
+                        pair p = map[multiplicand - sum];
+                        if(p.first != i && p.first != j && p.second != i && p.second != j)
+                        {
+                            Console.WriteLine(firstColumn[i] + ", " + firstColumn[j] + ", " + firstColumn[p.first] + ", " + firstColumn[p.second]);
+                            return;
+                        }
+                    }
+                }
+            }
         }
 
         private static int MultiplicationByHalving(int multiplicand, int multiplier)
