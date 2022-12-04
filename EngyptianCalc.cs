@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,8 +28,39 @@ namespace EgyptianCalculator
         private static void MultiplicationByDoubling(int multiplicand, int multiplier)
         {
             Console.WriteLine("\n---| MultiplicationByDoubling |---");
+            Console.WriteLine("\nYou've Entered: {0} X {1} to multiply", multiplicand, multiplier);
 
-            Console.WriteLine("You've Entered: {0} X {1} to multiply", multiplicand, multiplier);
+            int value = 1;
+            var firstColumn = new ArrayList();
+            //Add powers of two to the first column (multiplicand)
+            while(value <= multiplicand)
+            {
+                firstColumn.Add(value);
+                value = 2 * value;
+            }
+
+            Console.WriteLine("First Column:\n");
+            for(int i = 0; i<firstColumn.Count; i++)
+            {
+                Console.WriteLine(firstColumn[i] + ", ");
+            }
+            
+
+            //Create array for the second column
+            var secondColumn = new ArrayList();
+            for (int i=0; i<firstColumn.Count; i++)
+            {
+                secondColumn.Add(multiplier);
+                multiplier = 2 * multiplier;
+            }
+            Console.WriteLine("First Column:\n");
+            for (int i = 0; i < secondColumn.Count; i++)
+            {
+                Console.WriteLine(secondColumn[i] + ", ");
+            }
+
+            //Find elements that add up to a Multiplicand (firstClumn)
+
         }
 
         private static int MultiplicationByHalving(int multiplicand, int multiplier)
