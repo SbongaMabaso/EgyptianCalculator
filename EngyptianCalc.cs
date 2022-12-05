@@ -27,9 +27,11 @@ namespace EgyptianCalculator
 
         private static int EgyptianMultiplication(int multiplicand, int multiplier)
         {
-            int product;
+            int product = 0;
+            Console.Write("\n  {0}\t | {1}    | ", multiplicand, multiplier);
+            Console.WriteLine("\n-----------------------------");
 
-            if(multiplicand == 1)
+            if (multiplicand == 1)
             {
                 product = multiplier;
             }
@@ -41,14 +43,8 @@ namespace EgyptianCalculator
             {
                 product = EgyptianMultiplication(multiplicand / 2, 2 * multiplier);
             }
-
-            int product_temp = 0;
-            if(product >= product_temp)
-            {
-                product_temp = product;
-            }
-            Console.Write("\n ->|  {0} --> {1}  |  {2}  ", multiplicand, multiplier, product);
-            Console.WriteLine("\n-----------------------------");
+            
+            Console.Write(" --> | {0} ", product);
             return product;
         }
 
@@ -57,12 +53,14 @@ namespace EgyptianCalculator
         {
             Console.WriteLine("------------------------------");
             int[] numbers = getTwoNumbers();
-
+            
             // Numbers to multiply.
             int multiplicand = numbers[0];
             int multiplier = numbers[1];
 
-            Console.WriteLine("\n-----------------------------");
+            Console.WriteLine("\nYou've Entered {0} X {1}", multiplicand, multiplier);
+            Console.WriteLine("-----------------------------");
+            Console.WriteLine("\n Halving | Doubling | Addition ");
             EgyptianMultiplication(multiplicand, multiplier);
         }
     }
