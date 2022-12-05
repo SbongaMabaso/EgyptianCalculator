@@ -21,7 +21,7 @@ namespace EgyptianCalculator
             int multiplier = Convert.ToInt32(Console.ReadLine());
 
             int[] numbers = new int[] { multiplicand, multiplier };
-
+            
             return numbers;
         }
 
@@ -58,12 +58,20 @@ namespace EgyptianCalculator
             int multiplicand = numbers[0];
             int multiplier = numbers[1];
 
-            Console.WriteLine("\nYou've Entered {0} X {1}", multiplicand, multiplier);
-            Console.WriteLine("-----------------------------");
-            Console.WriteLine("\n Halving | Doubling | Addition ");
-            EgyptianMultiplication(multiplicand, multiplier);
+            if (multiplicand < 0 || multiplier < 0)
+            {
+                Console.WriteLine("\nEnter Positive Values");
+            }
+            else
+            {
+                Console.WriteLine("\nYou've Entered {0} X {1}", multiplicand, multiplier);
+                Console.WriteLine("-----------------------------");
+                Console.WriteLine("\n Halving | Doubling | Addition ");
+                EgyptianMultiplication(multiplicand, multiplier);
 
-            Console.WriteLine("(Final Answer)");
+                Console.WriteLine("(Final Answer)");
+            }
+            
         }
     }
 }
