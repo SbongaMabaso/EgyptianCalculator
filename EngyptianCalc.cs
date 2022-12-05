@@ -47,7 +47,8 @@ namespace EgyptianCalculator
             {
                 product_temp = product;
             }
-            Console.WriteLine("\n->|  {0} --> {1}  |  {2}  |", multiplicand, multiplier, product_temp);
+            Console.Write("\n ->|  {0} --> {1}  |  {2}  ", multiplicand, multiplier, product);
+            Console.WriteLine("\n-----------------------------");
             return product;
         }
 
