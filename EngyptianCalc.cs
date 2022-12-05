@@ -27,7 +27,7 @@ namespace EgyptianCalculator
 
         private static int EgyptianMultiplication(int multiplicand, int multiplier)
         {
-            int product = 0;
+            int product;
             Console.Write("\n  {0}\t | {1}    | ", multiplicand, multiplier);
             Console.WriteLine("\n-----------------------------");
 
@@ -62,6 +62,8 @@ namespace EgyptianCalculator
             Console.WriteLine("-----------------------------");
             Console.WriteLine("\n Halving | Doubling | Addition ");
             EgyptianMultiplication(multiplicand, multiplier);
+
+            Console.WriteLine("(Final Answer)");
         }
     }
 }
